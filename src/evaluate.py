@@ -12,7 +12,7 @@ model = create_model().to(device)
 
 model.load_state_dict(
     torch.load(
-        "models/resnet18_baseline.pth",
+        "models/resnet18_augmented.pth",
         map_location=device,
     )
 )
@@ -80,10 +80,10 @@ sns.heatmap(
 
 plt.xlabel("Predicted Label")
 plt.ylabel("True Label")
-plt.title("Confusion Matrix - ResNet-18 Baseline")
+plt.title("Confusion Matrix - ResNet-18 Augmented")
 
 plt.tight_layout()
 
-plt.savefig("results/confusion_matrix.png")
+plt.savefig("results/augmented_confusion_matrix.png")
 
 plt.show()

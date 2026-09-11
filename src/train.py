@@ -93,7 +93,7 @@ for epoch in range(EPOCHS):
 
 torch.save(
     model.state_dict(),
-    "models/resnet18_baseline.pth"
+    "models/resnet18_augmented.pth"
 )
 
 print("Model saved to models/resnet18_baseline.pth")
