@@ -5,8 +5,10 @@ from torchvision import models
 NUM_CLASSES = 6
 
 
-def create_model():
-    model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+def create_model(pretrained=True):
+    weights = models.ResNet18_Weights.DEFAULT if pretrained else None
+
+    model = models.resnet18(weights=weights)
 
     # Replace ImageNet's 1000-class classifier
     # with our 6-class classifier.

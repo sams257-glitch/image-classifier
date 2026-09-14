@@ -33,7 +33,7 @@ transform = transforms.Compose([
 ])
 
 
-model = create_model().to(device)
+model = create_model(pretrained=False).to(device)
 
 model.load_state_dict(
     torch.load(
