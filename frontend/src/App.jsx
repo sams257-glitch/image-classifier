@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
+  const API_URL =
+  import.meta.env.VITE_API_URL || "http://127.0.0.1:8000";
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
   const [results, setResults] = useState(null);
@@ -54,7 +56,7 @@ function App() {
 
     try {
       const response = await fetch(
-        "http://127.0.0.1:8000/predict",
+        `${API_URL}/predict`,
         {
           method: "POST",
           body: formData,
