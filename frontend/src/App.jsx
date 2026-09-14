@@ -18,6 +18,13 @@ function App() {
     }
   }
 
+  function handleChangeImage() {
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    setResults(null);
+    setError(null);
+  }
+
   useEffect(() => {
     if (!selectedFile) {
       setPreviewUrl(null);
@@ -74,7 +81,11 @@ function App() {
         <header className="header">
           <p className="eyebrow">COMPUTER VISION</p>
 
-          <h1>Natural Scene<br />Image Classifier</h1>
+          <h1>
+            Natural Scene
+            <br />
+            Image Classifier
+          </h1>
 
           <p className="subtitle">
             Upload a scene and let a ResNet-18 model classify it.
@@ -82,25 +93,25 @@ function App() {
         </header>
 
         <section className="card">
-          <label className="upload-area">
-            <span className="upload-icon">↑</span>
+          {!selectedFile ? (
+            <label className="upload-area">
+              <span className="upload-icon">↑</span>
 
-            <span className="upload-title">
-              Choose an image
-            </span>
+              <span className="upload-title">
+                Choose an image
+              </span>
 
-            <span className="upload-description">
-              JPG, JPEG, PNG or other image files
-            </span>
+              <span className="upload-description">
+                JPG, JPEG, PNG or other image files
+              </span>
 
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
-          </label>
-
-          {selectedFile && (
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleFileChange}
+              />
+            </label>
+          ) : (
             <div className="preview-section">
               <p className="filename">
                 {selectedFile.name}
@@ -114,13 +125,23 @@ function App() {
                 />
               )}
 
-              <button
-                className="predict-button"
-                onClick={handlePredict}
-                disabled={loading}
-              >
-                {loading ? "Analyzing..." : "Predict scene"}
-              </button>
+              <div className="button-group">
+                <button
+                  className="predict-button"
+                  onClick={handlePredict}
+                  disabled={loading}
+                >
+                  {loading ? "Analyzing..." : "Predict scene"}
+                </button>
+
+                <button
+                  className="change-button"
+                  onClick={handleChangeImage}
+                  disabled={loading}
+                >
+                  Change image
+                </button>
+              </div>
             </div>
           )}
 
@@ -147,9 +168,17 @@ function App() {
                   key={result.class}
                 >
                   <div className="result-top">
-                    <span className="class-name">
-                      {result.class}
-                    </span>
+                    <div className="class-info">
+                      <span className="class-name">
+                        {result.class}
+                      </span>
+
+                      {index === 0 && (
+                        <span className="top-label">
+                          TOP PREDICTION
+                        </span>
+                      )}
+                    </div>
 
                     <span className="confidence">
                       {(result.confidence * 100).toFixed(2)}%

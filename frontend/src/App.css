@@ -240,3 +240,46 @@ footer {
     font-size: 44px;
   }
 }
+.button-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.change-button {
+  border: 1px solid #394151;
+  border-radius: 10px;
+  padding: 11px 20px;
+  background: transparent;
+  color: #b8c0d0;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.change-button:hover {
+  border-color: #667085;
+  color: #f4f5f7;
+}
+
+.change-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.class-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.top-label {
+  padding: 3px 7px;
+  border: 1px solid #394151;
+  border-radius: 5px;
+  color: #8f9bb3;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
